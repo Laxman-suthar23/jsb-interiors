@@ -98,7 +98,7 @@ export default function AdminReviewsPage() {
                 ].map(f => (
                   <div key={f.name}>
                     <label className="block text-[0.65rem] tracking-widest uppercase text-[#1e3b22]/50 mb-1.5">{f.label}</label>
-                    <input name={f.name} required={f.required} value={(form as Record<string, unknown>)[f.name] as string} onChange={handleChange} className="form-input" />
+                    <input name={f.name} required={f.required} value={(form as unknown as Record<string, unknown>)[f.name] as string} onChange={handleChange} className="form-input" />
                   </div>
                 ))}
                 <div>

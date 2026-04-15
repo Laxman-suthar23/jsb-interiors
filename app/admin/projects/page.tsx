@@ -289,7 +289,7 @@ export default function AdminProjectsPage() {
                         name={field.name}
                         required={field.required}
                         value={
-                          (form as Record<string, unknown>)[
+                          (form as unknown as Record<string, unknown>)[
                             field.name
                           ] as string
                         }
