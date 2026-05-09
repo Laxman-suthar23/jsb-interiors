@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Mail, Phone, MapPin, ArrowRight, CheckCircle } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
-import { statsData } from "@/lib/data";
 
 export const metadata = {
   title: "About | JSB Interiors",
@@ -12,7 +11,7 @@ export default function AboutPage() {
   return (
     <>
       {/* HERO */}
-      <section className="relative pt-36 pb-24 px-6 bg-[#1e3b22] overflow-hidden">
+      <section className="relative pt-36 pb-24 px-6 bg-forest overflow-hidden">
         <div className="absolute inset-0 opacity-40">
           <Image
             src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1600&q=80"
@@ -20,22 +19,22 @@ export default function AboutPage() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1e3b22]/70 via-[#1e3b22]/50 to-[#1e3b22]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-forest/70 via-forest/50 to-forest" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto">
           <AnimatedSection>
-            <p className="text-[#c9a84c] text-sm tracking-widest uppercase mb-4">
+            <p className="text-gold text-sm tracking-widest uppercase mb-4">
               Our Story
             </p>
 
-            <h1 className="text-[#f5f0e8] text-4xl md:text-5xl font-semibold mb-6">
+            <h1 className="text-cream text-4xl md:text-5xl font-semibold mb-6">
               About JSB Interiors
             </h1>
 
-            <span className="block w-12 h-[1px] bg-[#c9a84c] mb-6" />
+            <span className="block w-12 h-[1px] bg-gold mb-6" />
 
-            <p className="text-[#f5f0e8]/70 max-w-xl text-lg leading-relaxed">
+            <p className="text-cream/70 max-w-xl text-lg leading-relaxed">
               A father-son design studio built on 35 years of craft, passion and
               an unwavering commitment to the spaces we create.
             </p>
@@ -44,13 +43,13 @@ export default function AboutPage() {
       </section>
 
       {/* FOUNDERS */}
-      <section className="py-28 px-6 bg-[#f5f0e8]">
+      <section className="py-28 px-6 bg-cream">
         <div className="max-w-7xl mx-auto">
           <AnimatedSection className="text-center mb-20">
-            <p className="text-[#c9a84c] text-sm tracking-widest uppercase mb-3">
+            <p className="text-gold text-sm tracking-widest uppercase mb-3">
               The Team
             </p>
-            <h2 className="text-[#1e3b22] text-4xl md:text-5xl font-semibold">
+            <h2 className="text-forest text-4xl md:text-5xl font-semibold">
               Meet the Founders
             </h2>
           </AnimatedSection>
@@ -84,21 +83,21 @@ export default function AboutPage() {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
                   </div>
 
-                  <p className="text-[#c9a84c] text-xs tracking-widest uppercase mb-1">
+                  <p className="text-gold text-xs tracking-widest uppercase mb-1">
                     {person.role}
                   </p>
 
-                  <h3 className="text-2xl font-semibold text-[#1e3b22] mb-3">
+                  <h3 className="text-2xl font-semibold text-forest mb-3">
                     {person.name}
                   </h3>
 
-                  <p className="text-[#1e3b22]/75 text-sm leading-relaxed mb-4">
+                  <p className="text-forest/75 text-sm leading-relaxed mb-4">
                     {person.bio}
                   </p>
 
                   <a
                     href={`tel:${person.phone}`}
-                    className="flex items-center gap-2 text-[#1e3b22]/70 text-sm hover:text-[#c9a84c]"
+                    className="flex items-center gap-2 text-forest/70 text-sm hover:text-gold"
                   >
                     <Phone size={14} />
                     {person.phone}
@@ -111,7 +110,7 @@ export default function AboutPage() {
       </section>
 
       {/* PHILOSOPHY */}
-      <section className="py-28 px-6 bg-[#162b18]">
+      <section className="py-28 px-6 bg-forest-dark">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
           
           <AnimatedSection>
@@ -126,25 +125,25 @@ export default function AboutPage() {
           </AnimatedSection>
 
           <AnimatedSection>
-            <p className="text-[#c9a84c] text-sm tracking-widest uppercase mb-4">
+            <p className="text-gold text-sm tracking-widest uppercase mb-4">
               Our Philosophy
             </p>
 
-            <h2 className="text-[#f5f0e8] text-4xl font-semibold mb-6">
+            <h2 className="text-cream text-4xl font-semibold mb-6">
               Design That Tells <span className="italic">Your Story</span>
             </h2>
 
-            <span className="block w-12 h-[1px] bg-[#c9a84c] mb-6" />
+            <span className="block w-12 h-[1px] bg-gold mb-6" />
 
-            <p className="text-[#f5f0e8]/70 mb-6">
+            <p className="text-cream/70 mb-6">
               Every space reflects its owner. Our process starts with listening.
             </p>
 
             <div className="grid grid-cols-2 gap-4">
               {["Client-first", "On-time", "Quality", "Timeless"].map((v) => (
                 <div key={v} className="flex items-center gap-2">
-                  <CheckCircle size={14} className="text-[#c9a84c]" />
-                  <span className="text-[#f5f0e8]/70 text-sm">{v}</span>
+                  <CheckCircle size={14} className="text-gold" />
+                  <span className="text-cream/70 text-sm">{v}</span>
                 </div>
               ))}
             </div>
@@ -153,42 +152,42 @@ export default function AboutPage() {
       </section>
 
       {/* CONTACT */}
-      <section className="py-28 px-6 bg-[#f5f0e8]">
+      <section className="py-28 px-6 bg-cream">
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20">
 
           <AnimatedSection>
-            <p className="text-[#c9a84c] text-sm tracking-widest uppercase mb-4">
+            <p className="text-gold text-sm tracking-widest uppercase mb-4">
               Get in Touch
             </p>
 
-            <h2 className="text-[#1e3b22] text-4xl font-semibold mb-6">
+            <h2 className="text-forest text-4xl font-semibold mb-6">
               Start a Conversation
             </h2>
 
-            <span className="block w-12 h-[1px] bg-[#c9a84c] mb-6" />
+            <span className="block w-12 h-[1px] bg-gold mb-6" />
 
-            <p className="text-[#1e3b22]/75 mb-8">
+            <p className="text-forest/75 mb-8">
               Let’s create something extraordinary together.
             </p>
 
             <div className="space-y-4">
               <div className="flex gap-3">
-                <MapPin size={16} className="text-[#c9a84c]" />
-                <span className="text-[#1e3b22]/70 text-sm">
+                <MapPin size={16} className="text-gold" />
+                <span className="text-forest/70 text-sm">
                   Bangalore, India
                 </span>
               </div>
 
               <div className="flex gap-3">
-                <Phone size={16} className="text-[#c9a84c]" />
-                <span className="text-[#1e3b22]/70 text-sm">
+                <Phone size={16} className="text-gold" />
+                <span className="text-forest/70 text-sm">
                   9845047214 / 8147605480
                 </span>
               </div>
 
               <div className="flex gap-3">
-                <Mail size={16} className="text-[#c9a84c]" />
-                <span className="text-[#1e3b22]/70 text-sm">
+                <Mail size={16} className="text-gold" />
+                <span className="text-forest/70 text-sm">
                   jsbinteriors067@gmail.com
                 </span>
               </div>
@@ -196,7 +195,7 @@ export default function AboutPage() {
 
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 mt-8 bg-[#1e3b22] text-[#f5f0e8] hover:bg-[#2d5230]"
+              className="inline-flex items-center gap-2 px-6 py-3 mt-8 bg-forest text-cream hover:bg-forest-mid"
             >
               Contact Us
               <ArrowRight size={14} />

@@ -28,7 +28,7 @@ export default function ProjectCard({
   return (
     <Link href={`/projects/${slug}`} className="group block">
       
-      <div className="relative overflow-hidden bg-[#1e3b22]/5">
+      <div className="relative overflow-hidden bg-forest/5">
         
         {/* Image */}
         <div className="relative aspect-[4/3] overflow-hidden">
@@ -44,48 +44,48 @@ export default function ProjectCard({
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
 
           {/* Index */}
-          <div className="absolute top-4 left-4 w-9 h-9 bg-[#f5f0e8] flex items-center justify-center text-[#1e3b22] text-sm font-bold shadow">
+          <div className="absolute top-4 left-4 w-9 h-9 bg-cream flex items-center justify-center text-forest text-sm font-bold shadow">
             {String(index + 1).padStart(2, "0")}
           </div>
 
           {/* Type */}
           <div className="absolute top-4 right-4">
-            <span className="bg-[#1e3b22]/80 text-[#f5f0e8] px-3 py-1 text-[0.65rem] tracking-widest uppercase backdrop-blur-sm">
+            <span className="bg-forest/80 text-cream px-3 py-1 text-[0.65rem] tracking-widest uppercase backdrop-blur-sm">
               {type}
             </span>
           </div>
 
           {/* Arrow */}
-          <div className="absolute bottom-4 right-4 w-10 h-10 bg-[#c9a84c] flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
-            <ArrowUpRight size={16} className="text-[#1e3b22]" />
+          <div className="absolute bottom-4 right-4 w-10 h-10 bg-gold flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-500">
+            <ArrowUpRight size={16} className="text-forest" />
           </div>
 
           {/* ✅ ALWAYS VISIBLE TEXT */}
           <div className="absolute bottom-0 left-0 p-5 z-10 w-full">
-            <p className="text-[#f5f0e8]/70 text-xs tracking-widest uppercase mb-1">
+            <p className="text-cream/70 text-xs tracking-widest uppercase mb-1">
               {location}
             </p>
 
-            <h3 className="text-[#f5f0e8] text-lg font-semibold leading-tight">
+            <h3 className="text-cream text-lg font-semibold leading-tight">
               {title}
             </h3>
           </div>
         </div>
 
         {/* Bottom Content */}
-        <div className="p-5 border border-t-0 border-[#1e3b22]/10 bg-white">
+        <div className="p-5 border border-t-0 border-forest/10 bg-white">
           
-          <p className="text-sm text-[#1e3b22]/70 mb-2">
+          <p className="text-sm text-forest/70 mb-2">
             {clientName}
           </p>
 
           <div className="flex items-center justify-between">
             
-            <span className="text-[0.7rem] text-[#1e3b22]/50 uppercase tracking-wider">
+            <span className="text-[0.7rem] text-forest/50 uppercase tracking-wider">
               {duration}
             </span>
 
-            <span className="text-[0.7rem] text-[#1e3b22]/50 tracking-wide group-hover:text-[#c9a84c] transition-colors">
+            <span className="text-[0.7rem] text-forest/50 tracking-wide group-hover:text-gold transition-colors">
               View Project →
             </span>
 

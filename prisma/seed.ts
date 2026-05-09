@@ -1,7 +1,16 @@
+import "dotenv/config";
+import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "@prisma/client";
+import pg from "pg";
+import bcrypt from "bcryptjs";
 
-const prisma = new PrismaClient();
+const pool = new pg.Pool({ connectionString: process.env.DATABASE_URL! });
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const adapter = new PrismaPg(pool as any);
 
+const prisma = new PrismaClient({
+  adapter,
+});
 async function main() {
   console.log("🌱 Seeding database...");
 
@@ -131,16 +140,17 @@ async function main() {
   ];
 
   for (const review of reviews) {
-    await prisma.review.create({ data: review });
+    await prisma.review.create({ data: { ...review, approved: true } });
     console.log(`  ✓ Created review by: ${review.name}`);
   }
 
-  // Admin user (change password before production!)
+  // Admin user with bcrypt-hashed password
+  const hashedPassword = await bcrypt.hash("changeme123", 12);
   await prisma.user.create({
     data: {
       name: "JSB Admin",
       email: "admin@jsbinteriors.com",
-      password: "changeme123", // Hash this with bcrypt in production
+      password: hashedPassword,
       role: "admin",
     },
   });

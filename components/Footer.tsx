@@ -4,7 +4,7 @@ import Image from "next/image";
 import logo from '../public/logo.png';
 export default function Footer() {
   return (
-    <footer className="bg-[#162b18] text-[#f5f0e8]">
+    <footer className="bg-forest-dark text-cream">
       <div className="max-w-7xl mx-auto px-6 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}
@@ -34,21 +34,21 @@ export default function Footer() {
                 </span>
               </div>
             </div>
-            <p className="text-[#f5f0e8]/55 text-sm leading-relaxed mb-6">
+            <p className="text-cream/55 text-sm leading-relaxed mb-6">
               Crafting elegant, timeless spaces that reflect the soul of those
               who inhabit them.
             </p>
             <div className="flex gap-4">
               <a
                 href="#"
-                className="w-9 h-9 border border-[#f5f0e8]/20 flex items-center justify-center hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors"
+                className="w-9 h-9 border border-cream/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
                 aria-label="Instagram"
               >
                 <Share2 size={15} />
               </a>
               <a
                 href="#"
-                className="w-9 h-9 border border-[#f5f0e8]/20 flex items-center justify-center hover:border-[#c9a84c] hover:text-[#c9a84c] transition-colors"
+                className="w-9 h-9 border border-cream/20 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
                 aria-label="Website"
               >
                 <Globe size={15} />
@@ -59,7 +59,7 @@ export default function Footer() {
           {/* Navigation */}
           <div>
             <h3
-              className="text-xs tracking-[0.25em] uppercase mb-6 text-[#c9a84c]"
+              className="text-xs tracking-[0.25em] uppercase mb-6 text-gold"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}
             >
               Navigation
@@ -74,7 +74,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[#f5f0e8]/55 hover:text-[#f5f0e8] text-sm transition-colors"
+                    className="text-cream/55 hover:text-cream text-sm transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -86,7 +86,7 @@ export default function Footer() {
           {/* Services */}
           <div>
             <h3
-              className="text-xs tracking-[0.25em] uppercase mb-6 text-[#c9a84c]"
+              className="text-xs tracking-[0.25em] uppercase mb-6 text-gold"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}
             >
               Services
@@ -101,7 +101,7 @@ export default function Footer() {
                 "Lighting Design",
               ].map((s) => (
                 <li key={s}>
-                  <span className="text-[#f5f0e8]/55 text-sm">{s}</span>
+                  <span className="text-cream/55 text-sm">{s}</span>
                 </li>
               ))}
             </ul>
@@ -110,7 +110,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h3
-              className="text-xs tracking-[0.25em] uppercase mb-6 text-[#c9a84c]"
+              className="text-xs tracking-[0.25em] uppercase mb-6 text-gold"
               style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}
             >
               Contact
@@ -119,9 +119,9 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin
                   size={14}
-                  className="text-[#c9a84c] mt-1 flex-shrink-0"
+                  className="text-gold mt-1 flex-shrink-0"
                 />
-                <span className="text-[#f5f0e8]/55 text-sm leading-relaxed">
+                <span className="text-cream/55 text-sm leading-relaxed">
                   #17, Jyothi Shree, 1st Cross,
                   <br />
                   Brindavan Nagar, Taverekere,
@@ -130,27 +130,27 @@ export default function Footer() {
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone size={14} className="text-[#c9a84c] flex-shrink-0" />
+                <Phone size={14} className="text-gold flex-shrink-0" />
                 <div className="text-sm">
                   <a
                     href="tel:9845047214"
-                    className="text-[#f5f0e8]/55 hover:text-[#f5f0e8] transition-colors block"
+                    className="text-cream/55 hover:text-cream transition-colors block"
                   >
                     9845047214
                   </a>
                   <a
                     href="tel:8147605480"
-                    className="text-[#f5f0e8]/55 hover:text-[#f5f0e8] transition-colors block"
+                    className="text-cream/55 hover:text-cream transition-colors block"
                   >
                     8147605480
                   </a>
                 </div>
               </li>
               <li className="flex items-center gap-3">
-                <Mail size={14} className="text-[#c9a84c] flex-shrink-0" />
+                <Mail size={14} className="text-gold flex-shrink-0" />
                 <a
                   href="mailto:jsbinteriors067@gmail.com"
-                  className="text-[#f5f0e8]/55 hover:text-[#f5f0e8] text-sm transition-colors"
+                  className="text-cream/55 hover:text-cream text-sm transition-colors"
                 >
                   jsbinteriors067@gmail.com
                 </a>
@@ -160,11 +160,11 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-[#f5f0e8]/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[#f5f0e8]/35 text-xs tracking-wide">
+        <div className="border-t border-cream/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+          <p className="text-cream/35 text-xs tracking-wide">
             © {new Date().getFullYear()} JSB Interiors. All rights reserved.
           </p>
-          <p className="text-[#f5f0e8]/35 text-xs tracking-wide">
+          <p className="text-cream/35 text-xs tracking-wide">
             Jasraj C Jangid & Chandan P Suthar
           </p>
         </div>

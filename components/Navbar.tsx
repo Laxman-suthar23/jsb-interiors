@@ -31,7 +31,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled
-          ? "bg-[#f5f0e8]/95 backdrop-blur-md shadow-sm py-3"
+          ? "bg-cream/95 backdrop-blur-md shadow-sm py-3"
           : "bg-transparent py-6"
       }`}
     >
@@ -40,7 +40,7 @@ export default function Navbar() {
         <Link
           href="/"
           className={`flex items-center gap-3 transition-colors duration-300 ${
-            isDark ? "text-[#f5f0e8]" : "text-[#1e3b22]"
+            isDark ? "text-cream" : "text-forest"
           }`}
         >
           <div className="w-9 h-9">
@@ -78,8 +78,8 @@ export default function Navbar() {
                   pathname === link.href ? "active" : ""
                 } ${
                   isDark
-                    ? "text-[#f5f0e8]/80 hover:text-[#f5f0e8]"
-                    : "text-[#1e3b22]/70 hover:text-[#1e3b22]"
+                    ? "text-cream/80 hover:text-cream"
+                    : "text-forest/70 hover:text-forest"
                 }`}
               >
                 {link.label}
@@ -107,7 +107,7 @@ export default function Navbar() {
         <button
           onClick={() => setOpen(!open)}
           className={`md:hidden p-2 transition-colors duration-300 ${
-            isDark ? "text-[#f5f0e8]" : "text-[#1e3b22]"
+            isDark ? "text-cream" : "text-forest"
           }`}
           aria-label="Toggle menu"
         >
@@ -119,8 +119,7 @@ export default function Navbar() {
       <div
         className={`md:hidden transition-all duration-400 overflow-hidden ${
           open ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
-        }`}
-        style={{ backgroundColor: "#1e3b22" }}
+        } bg-forest`}
       >
         <ul className="px-6 py-8 space-y-6">
           {navLinks.map((link) => (
@@ -128,7 +127,7 @@ export default function Navbar() {
               <Link
                 href={link.href}
                 onClick={() => setOpen(false)}
-                className="block text-[#f5f0e8] nav-link text-base hover:text-[#c9a84c] transition-colors"
+                className="block text-cream nav-link text-base hover:text-gold transition-colors"
               >
                 {link.label}
               </Link>

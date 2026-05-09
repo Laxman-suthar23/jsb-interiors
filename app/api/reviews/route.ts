@@ -1,10 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
-import { reviewsData } from "@/lib/data";
+import { prisma } from "@/lib/db";
 
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
-    // Production: const reviews = await prisma.review.findMany({ orderBy: { createdAt: "desc" } });
-    return NextResponse.json({ reviews: reviewsData });
+    const { searchParams } = new URL(req.url);
+    const limit = Math.min(Math.max(parseInt(searchParams.get("limit") || "4", 10), 1), 50);
+    const offset = Math.max(parseInt(searchParams.get("offset") || "0", 10), 0);
+
+    const [reviews, totalCount] = await Promise.all([
+      prisma.review.findMany({
+        where: { approved: true },
+        orderBy: { createdAt: "desc" },
+        skip: offset,
+        take: limit,
+      }),
+      prisma.review.count({ where: { approved: true } }),
+    ]);
+
+    return NextResponse.json({
+      reviews,
+      totalCount,
+      hasMore: offset + reviews.length < totalCount,
+    });
   } catch (error) {
     console.error("GET /api/reviews error:", error);
     return NextResponse.json({ error: "Failed to fetch reviews" }, { status: 500 });
@@ -19,8 +36,9 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Name and message are required" }, { status: 400 });
     }
 
-    // Production: const review = await prisma.review.create({ data: { name, message, rating, project } });
-    const review = { id: Date.now().toString(), name, message, rating: rating ?? 5, project: project ?? null, createdAt: new Date().toISOString() };
+    const review = await prisma.review.create({
+      data: { name, message, rating: rating ?? 5, project: project ?? null, approved: false },
+    });
 
     return NextResponse.json({ review }, { status: 201 });
   } catch (error) {
