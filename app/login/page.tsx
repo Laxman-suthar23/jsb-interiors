@@ -30,8 +30,7 @@ export default function LoginPage() {
       if (res?.error) {
         setError("Invalid email or password");
       } else {
-        router.push("/admin");
-        router.refresh();
+        window.location.href = "/admin";
       }
     } catch (err) {
       setError("An unexpected error occurred");
@@ -79,7 +78,7 @@ export default function LoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="form-input"
-              placeholder="[EMAIL_ADDRESS]"
+              placeholder="Enter Your Email Address"
               required
             />
           </div>
