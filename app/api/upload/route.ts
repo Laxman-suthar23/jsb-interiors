@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { v2 as cloudinary } from "cloudinary";
 
 const ALLOWED_MIME_TYPES = [
   "image/jpeg",
@@ -10,6 +11,12 @@ const ALLOWED_MIME_TYPES = [
 ];
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -52,48 +59,29 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ── Cloudinary config check ──
-    const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
-    const uploadPreset =
-      process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET ?? "jsb-interiors";
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
 
-    if (!cloudName) {
-      console.error("CLOUDINARY_CLOUD_NAME is not set");
-      return NextResponse.json(
-        { error: "Cloudinary not configured" },
-        { status: 500 }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const uploadResult: any = await new Promise((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        { folder: "jsb-interiors" },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
       );
-    }
-
-    // ── Upload to Cloudinary ──
-    const uploadData = new FormData();
-    uploadData.append("file", file);
-    uploadData.append("upload_preset", uploadPreset);
-    uploadData.append("folder", "jsb-interiors");
-
-    const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
-      { method: "POST", body: uploadData }
-    );
-
-    const data = await response.json();
-
-    if (!response.ok) {
-      console.error("Cloudinary error:", data);
-      return NextResponse.json(
-        { error: data.error?.message ?? "Upload failed" },
-        { status: 502 }
-      );
-    }
+      stream.end(buffer);
+    });
 
     return NextResponse.json({
-      url: data.secure_url,
-      publicId: data.public_id,
+      url: uploadResult.secure_url,
+      publicId: uploadResult.public_id,
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error("Upload error:", error);
     return NextResponse.json(
-      { error: "Image upload failed" },
+      { error: error?.message || "Image upload failed" },
       { status: 500 }
     );
   }
