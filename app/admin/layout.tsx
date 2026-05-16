@@ -3,13 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FolderOpen, Star, LogOut, Menu, X } from "lucide-react";
+import { LayoutDashboard, FolderOpen, Star, LogOut, Menu, X, Mail } from "lucide-react";
 import { signOut } from "next-auth/react";
 
 const navItems = [
   { href: "/admin", label: "Dashboard", icon: <LayoutDashboard size={16} /> },
   { href: "/admin/projects", label: "Projects", icon: <FolderOpen size={16} /> },
   { href: "/admin/reviews", label: "Reviews", icon: <Star size={16} /> },
+  { href: "/admin/messages", label: "Inquiries", icon: <Mail size={16} /> },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {

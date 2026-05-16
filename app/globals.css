@@ -182,17 +182,17 @@ body {
 
 .form-input {
   width: 100%;
-  padding: 0.875rem 1rem;
+  padding: 1rem 1.25rem;
   background-color: transparent;
   border: 1px solid rgba(46, 82, 48, 0.25);
   color: var(--color-forest-dark);
-  font-size: 0.9375rem;
-  transition: border-color 0.3s ease;
+  font-size: 1rem;
+  transition: all 0.3s ease;
   outline: none;
   font-family: 'DM Sans', sans-serif;
 }
 
-.form-input:focus { border-color: var(--color-forest); }
+.form-input:focus { border-color: var(--color-forest); box-shadow: 0 0 0 2px rgba(30, 59, 34, 0.05); }
 .form-input::placeholder { color: rgba(30, 59, 34, 0.35); font-weight: 300; }
 
 .form-input-dark {
@@ -201,7 +201,7 @@ body {
   color: var(--color-cream);
 }
 
-.form-input-dark:focus { border-color: var(--color-gold); }
+.form-input-dark:focus { border-color: var(--color-gold); box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.1); }
 .form-input-dark::placeholder { color: rgba(245, 240, 232, 0.35); }
 .skeleton {
   background: linear-gradient(90deg, #e8dfc8 25%, #f0e9d8 50%, #e8dfc8 75%);

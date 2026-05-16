@@ -124,31 +124,32 @@ export default function ContactPage() {
 
             {/* Form */}
             <div className="lg:col-span-3">
-              <AnimatedSection className="bg-forest p-10">
+              <div className="bg-forest p-6 sm:p-10 min-h-[500px] flex flex-col justify-center">
                 {status === "success" ? (
-                  <div className="flex flex-col items-center justify-center py-10 text-center">
-                    <CheckCircle size={48} className="text-gold mb-5" />
-                    <h3 className="text-cream text-xl font-semibold mb-3">
-                      Message Sent!
+                  <AnimatedSection direction="fade" className="flex flex-col items-center justify-center text-center py-10">
+                    <div className="w-20 h-20 bg-gold/10 rounded-full flex items-center justify-center mb-6">
+                      <CheckCircle size={40} className="text-gold" />
+                    </div>
+                    <h3 className="text-cream text-2xl font-semibold mb-4" style={{ fontFamily: "'Playfair Display', serif" }}>
+                      Message Sent Successfully!
                     </h3>
-                    <p className="text-cream/50 text-sm max-w-xs">
-                      Thank you for reaching out. Our team will get back to you
-                      within 24 hours.
+                    <p className="text-cream/60 text-base max-w-sm leading-relaxed mb-10">
+                      Thank you for reaching out to JSB Interiors. Our team has received your inquiry and will get back to you within 24 hours.
                     </p>
                     <button
                       onClick={() => setStatus("idle")}
-                      className="mt-8 text-gold text-xs tracking-widest uppercase hover:underline"
+                      className="px-8 py-3 border border-gold text-gold text-xs tracking-[0.2em] uppercase font-semibold hover:bg-gold hover:text-forest transition-all"
                     >
-                      Send another message
+                      Send Another Message
                     </button>
-                  </div>
+                  </AnimatedSection>
                 ) : (
-                  <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <h3 className="sm:col-span-2 text-xl font-semibold text-cream mb-2">
+                  <form onSubmit={handleSubmit} className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-6">
+                    <h3 className="sm:col-span-2 text-2xl font-semibold text-cream mb-2" style={{ fontFamily: "'Playfair Display', serif" }}>
                       Send a Message
                     </h3>
-                    <div>
-                      <label className="block text-[0.65rem] tracking-[0.2em] uppercase text-cream/40 mb-2 font-medium">
+                    <div className="flex flex-col">
+                      <label className="text-[0.65rem] tracking-[0.2em] uppercase text-gold mb-2 font-semibold">
                         Your Name
                       </label>
                       <input
@@ -156,11 +157,12 @@ export default function ContactPage() {
                         value={form.name}
                         onChange={handleChange}
                         className="form-input-dark"
+                        placeholder="John Doe"
                         required
                       />
                     </div>
-                    <div>
-                      <label className="block text-[0.65rem] tracking-[0.2em] uppercase text-cream/40 mb-2 font-medium">
+                    <div className="flex flex-col">
+                      <label className="text-[0.65rem] tracking-[0.2em] uppercase text-gold mb-2 font-semibold">
                         Email Address
                       </label>
                       <input
@@ -169,11 +171,12 @@ export default function ContactPage() {
                         value={form.email}
                         onChange={handleChange}
                         className="form-input-dark"
+                        placeholder="john@example.com"
                         required
                       />
                     </div>
-                    <div className="sm:col-span-2">
-                      <label className="block text-[0.65rem] tracking-[0.2em] uppercase text-cream/40 mb-2 font-medium">
+                    <div className="sm:col-span-2 flex flex-col">
+                      <label className="text-[0.65rem] tracking-[0.2em] uppercase text-gold mb-2 font-semibold">
                         Subject
                       </label>
                       <input
@@ -181,11 +184,12 @@ export default function ContactPage() {
                         value={form.subject}
                         onChange={handleChange}
                         className="form-input-dark"
+                        placeholder="How can we help you?"
                         required
                       />
                     </div>
-                    <div className="sm:col-span-2">
-                      <label className="block text-[0.65rem] tracking-[0.2em] uppercase text-cream/40 mb-2 font-medium">
+                    <div className="sm:col-span-2 flex flex-col">
+                      <label className="text-[0.65rem] tracking-[0.2em] uppercase text-gold mb-2 font-semibold">
                         Message
                       </label>
                       <textarea
@@ -194,6 +198,7 @@ export default function ContactPage() {
                         value={form.message}
                         onChange={handleChange}
                         className="form-input-dark resize-none"
+                        placeholder="Tell us about your project..."
                         required
                       />
                     </div>
@@ -201,15 +206,18 @@ export default function ContactPage() {
                       <button
                         type="submit"
                         disabled={status === "loading"}
-                        className="w-full flex items-center justify-center gap-3 py-4 bg-gold text-forest text-xs tracking-[0.2em] uppercase font-semibold hover:opacity-90 transition disabled:opacity-50"
+                        className="w-full flex items-center justify-center gap-3 py-4 bg-gold text-forest text-xs tracking-[0.2em] uppercase font-bold hover:opacity-90 transition-all disabled:opacity-50"
                       >
-                        {status === "loading" ? "Sending..." : "Send Message"}
+                        {status === "loading" ? "Sending Enquiry..." : "Send Message"}
                         <Send size={14} />
                       </button>
+                      {status === "error" && (
+                        <p className="text-red-400 text-xs mt-3 text-center">Failed to send message. Please try again or call us directly.</p>
+                      )}
                     </div>
                   </form>
                 )}
-              </AnimatedSection>
+              </div>
             </div>
           </div>
         </div>

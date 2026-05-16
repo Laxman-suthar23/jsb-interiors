@@ -1,17 +1,19 @@
 export const runtime = "nodejs";
 import Link from "next/link";
-import { FolderOpen, Star, ExternalLink, TrendingUp } from "lucide-react";
+import { FolderOpen, Star, ExternalLink, TrendingUp, Mail } from "lucide-react";
 import { prisma } from "@/lib/db";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboard() {
-  const [projectCount, featuredCount, reviewCount, recentProjects, recentReviews] = await Promise.all([
+  const [projectCount, featuredCount, reviewCount, messageCount, recentProjects, recentReviews, recentMessages] = await Promise.all([
     prisma.project.count(),
     prisma.project.count({ where: { featured: true } }),
     prisma.review.count(),
+    prisma.contact.count(),
     prisma.project.findMany({ include: { images: true }, take: 4, orderBy: { createdAt: "desc" } }),
     prisma.review.findMany({ take: 4, orderBy: { createdAt: "desc" } }),
+    prisma.contact.findMany({ take: 4, orderBy: { createdAt: "desc" } }),
   ]);
 
   return (
@@ -25,7 +27,7 @@ export default async function AdminDashboard() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
         {[
           { label: "Total Projects", value: projectCount, icon: <FolderOpen size={18} />, color: "var(--forest)" },
-          { label: "Featured Projects", value: featuredCount, icon: <TrendingUp size={18} />, color: "var(--forest-mid)" },
+          { label: "Inquiries", value: messageCount, icon: <Mail size={18} />, color: "var(--forest-mid)" },
           { label: "Reviews", value: reviewCount, icon: <Star size={18} />, color: "var(--gold)" },
           { label: "Years Experience", value: 35, icon: <TrendingUp size={18} />, color: "var(--forest-dark)" },
         ].map((stat) => (
@@ -58,33 +60,28 @@ export default async function AdminDashboard() {
                 </Link>
               </div>
             ))}
-            {recentProjects.length === 0 && (
-              <p className="text-xs text-forest/30 py-4">No projects found.</p>
-            )}
           </div>
         </div>
 
         <div className="bg-white border border-forest/8 p-7">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="font-semibold text-forest" style={{ fontFamily: "'Playfair Display', serif" }}>Recent Reviews</h3>
-            <Link href="/admin/reviews" className="text-xs text-gold hover:underline tracking-wide">View all</Link>
+            <h3 className="font-semibold text-forest" style={{ fontFamily: "'Playfair Display', serif" }}>Recent Inquiries</h3>
+            <Link href="/admin/messages" className="text-xs text-gold hover:underline tracking-wide">View all</Link>
           </div>
           <div className="space-y-4">
-            {recentReviews.map((r) => (
-              <div key={r.id} className="py-3 border-b border-forest/6 last:border-0">
+            {recentMessages.map((m) => (
+              <div key={m.id} className="py-3 border-b border-forest/6 last:border-0">
                 <div className="flex items-center justify-between mb-1">
-                  <p className="text-sm font-medium text-forest">{r.name}</p>
-                  <div className="flex gap-0.5">
-                    {[1,2,3,4,5].map(s => (
-                      <span key={s} className={`text-xs ${s <= (r.rating ?? 5) ? "text-gold" : "text-gold/20"}`}>★</span>
-                    ))}
-                  </div>
+                  <p className="text-sm font-medium text-forest">{m.name}</p>
+                  <span className="text-[0.6rem] text-forest/30 uppercase tracking-tighter">
+                    {new Date(m.createdAt).toLocaleDateString()}
+                  </span>
                 </div>
-                <p className="text-xs text-forest/45 leading-relaxed line-clamp-1">{r.message}</p>
+                <p className="text-xs text-forest/45 leading-relaxed line-clamp-1">{m.message}</p>
               </div>
             ))}
-            {recentReviews.length === 0 && (
-              <p className="text-xs text-forest/30 py-4">No reviews found.</p>
+            {recentMessages.length === 0 && (
+              <p className="text-xs text-forest/30 py-4">No recent inquiries.</p>
             )}
           </div>
         </div>
@@ -94,8 +91,8 @@ export default async function AdminDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {[
           { href: "/admin/projects", label: "Add New Project", desc: "Upload images & fill details", color: "var(--forest)" },
-          { href: "/admin/reviews", label: "Add New Review", desc: "Add a client testimonial", color: "var(--forest-mid)" },
-          { href: "/", label: "View Live Site", desc: "See the public-facing website", color: "var(--gold)" },
+          { href: "/admin/messages", label: "View Inquiries", desc: "Check client messages", color: "var(--forest-mid)" },
+          { href: "/admin/reviews", label: "Manage Reviews", desc: "Approve client testimonials", color: "var(--gold)" },
         ].map((action) => (
           <Link key={action.href} href={action.href}
             className="p-6 text-white group hover:opacity-90 transition-opacity"
