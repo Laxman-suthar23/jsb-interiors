@@ -183,7 +183,7 @@ export default async function HomePage() {
               </div>
 
               {/* Floating card */}
-              <div className="absolute -bottom-8 -left-8 bg-forest text-cream p-6 w-44 shadow-lg">
+              <div className="absolute -bottom-8 -left-4 sm:-left-8 bg-forest text-cream p-6 w-44 shadow-lg">
                 <p className="text-4xl font-bold text-gold mb-1">35</p>
                 <p className="text-[0.7rem] tracking-widest uppercase opacity-70">
                   Years of <br /> Excellence
