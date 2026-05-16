@@ -183,26 +183,59 @@ body {
 .form-input {
   width: 100%;
   padding: 1rem 1.25rem;
-  background-color: transparent;
-  border: 1px solid rgba(46, 82, 48, 0.25);
+  background-color: #ffffff;
+  border: 1px solid rgba(30, 59, 34, 0.12);
   color: var(--color-forest-dark);
-  font-size: 1rem;
-  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  outline: none;
+  font-family: 'DM Sans', sans-serif;
+  border-radius: 0;
+}
+
+.form-input:hover {
+  border-color: rgba(30, 59, 34, 0.3);
+}
+
+.form-input:focus {
+  border-color: var(--color-gold);
+  background-color: #fff;
+  box-shadow: 0 4px 20px rgba(30, 59, 34, 0.04);
+}
+
+.form-input::placeholder {
+  color: rgba(30, 59, 34, 0.25);
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.form-input-dark {
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(245, 240, 232, 0.15);
+  color: var(--color-cream);
+  width: 100%;
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   outline: none;
   font-family: 'DM Sans', sans-serif;
 }
 
-.form-input:focus { border-color: var(--color-forest); box-shadow: 0 0 0 2px rgba(30, 59, 34, 0.05); }
-.form-input::placeholder { color: rgba(30, 59, 34, 0.35); font-weight: 300; }
-
-.form-input-dark {
-  background-color: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(245, 240, 232, 0.18);
-  color: var(--color-cream);
+.form-input-dark:hover {
+  background-color: rgba(255, 255, 255, 0.07);
+  border-color: rgba(245, 240, 232, 0.3);
 }
 
-.form-input-dark:focus { border-color: var(--color-gold); box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.1); }
-.form-input-dark::placeholder { color: rgba(245, 240, 232, 0.35); }
+.form-input-dark:focus {
+  border-color: var(--color-gold);
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.form-input-dark::placeholder {
+  color: rgba(245, 240, 232, 0.25);
+  font-weight: 300;
+}
 .skeleton {
   background: linear-gradient(90deg, #e8dfc8 25%, #f0e9d8 50%, #e8dfc8 75%);
   background-size: 200% 100%;
